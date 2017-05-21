@@ -3,20 +3,7 @@
 #include "../third_party/SDL2/include/SDL.h"
 #include "../third_party/SDL2/include/SDL_opengl.h"
 
-//
-// OpenGL Function Pointers
-//
-
-typedef void gl_use_program(GLuint program);
-gl_use_program *glUseProgram = 0;
-
-typedef GLint gl_get_uniform_location(GLuint program, const GLchar *name);
-gl_get_uniform_location *glGetUniformLocation;
-
-
-typedef void gl_uniform_1f(GLint location, GLfloat v0);
-gl_uniform_1f *glUniform1f;
-
+#include "gl_init.h"
 #include "game.h"
 #include "shader.h"
 
@@ -24,13 +11,6 @@ typedef int32_t b32;
 
 typedef int32_t s32;
 typedef uint32_t u32;
-
-static void InitGL()
-{
-    glUseProgram = (gl_use_program *)SDL_GL_GetProcAddress("glUseProgram");
-    glGetUniformLocation = (gl_get_uniform_location *)SDL_GL_GetProcAddress("glGetUniformLocation");
-    glUniform1f = (gl_uniform_1f *)SDL_GL_GetProcAddress("glUniform1f");
-}
 
 int main(int argc, char **argv)
 {

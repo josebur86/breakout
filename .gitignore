@@ -1,0 +1,9 @@
+*.exe
+*.swp
+*.pdb
+tags
+*.dll
+*.ilk
+*.obj
+
+gl_init.h

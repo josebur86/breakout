@@ -1,0 +1,6 @@
+// Program
+void glUseProgram(GLuint program);
+
+// Uniform
+GLint glGetUniformLocation(GLuint program, const GLchar *name);
+void glUniform1f(GLint location, GLfloat v0);
