@@ -112,7 +112,8 @@ static void WriteFunctionPointers(FILE *File, gl_function_table *FunctionTable)
     {
         gl_function *Function = FunctionTable->Functions + FunctionIndex;
 
-        fprintf(File, "%s *%s;\n", Function->TypeDefName, Function->Name);
+        fprintf(File, "%s *aq%s;\n", Function->TypeDefName, Function->Name);
+        fprintf(File, "#define %s aq%s\n\n", Function->Name, Function->Name);
     }
     fprintf(File, "\n");
 }
@@ -120,15 +121,16 @@ static void WriteFunctionPointers(FILE *File, gl_function_table *FunctionTable)
 static void WriteInitGL(FILE *File, gl_function_table *FunctionTable)
 {
 
-    fprintf(File, "static void InitGL()\n{\n");
+    fprintf(File, "static bool InitGL()\n{\n");
     for (int FunctionIndex = 0; FunctionIndex < FunctionTable->FunctionCount; ++FunctionIndex)
     {
         gl_function *Function = FunctionTable->Functions + FunctionIndex;
 
-        //glUseProgram = (gl_use_program *)SDL_GL_GetProcAddress("glUseProgram");
         fprintf(File, "    %s = (%s *)SDL_GL_GetProcAddress(\"%s\");\n", 
                 Function->Name, Function->TypeDefName, Function->Name);
+        fprintf(File, "    if (!%s) return false;\n\n", Function->Name);
     }
+    fprintf(File, "    return true;\n");
     fprintf(File, "}\n\n");
 }
 

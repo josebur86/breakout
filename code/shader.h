@@ -3,16 +3,10 @@
 #include <string>
 
 #include "../third_party/SDL2/include/SDL_opengl.h"
+#include "../third_party/glm/glm.hpp"
+#include "../third_party/glm/gtc/type_ptr.hpp"
 
 typedef char GLchar;
-
-namespace glm
-{
-    class vec2;
-    class vec3;
-    class vec4;
-    class mat4;
-}
 
 class Shader
 {
@@ -33,7 +27,7 @@ public:
     void SetVector3f(const GLchar* name, const glm::vec3 &value, GLboolean useShader = false);
     void SetVector4f(const GLchar* name, GLfloat x, GLfloat y, GLfloat z, GLfloat w, GLboolean useShader = false);
     void SetVector4f(const GLchar* name, const glm::vec4 &value, GLboolean useShader = false);
-    void SetMatrix3 (const GLchar* name, const glm::mat4 &matrix, GLboolean useShader = false);
+    void SetMatrix4 (const GLchar* name, const glm::mat4 &matrix, GLboolean useShader = false);
 
 private:
 

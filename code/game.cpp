@@ -1,3 +1,4 @@
+#include "sprite_renderer.h"
 
 Game::Game(GLuint Width, GLuint Height)
 {
