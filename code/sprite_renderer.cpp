@@ -1,6 +1,12 @@
 #include "../third_party/glm/glm.hpp"
 #include "../third_party/glm/gtc/matrix_transform.hpp"
 
+SpriteRenderer::SpriteRenderer(Shader& shader)
+{
+    this->shader = shader;
+    this->initRenderData();
+}
+
 void SpriteRenderer::initRenderData()
 {
     // Configure VAO/VBO
@@ -43,7 +49,7 @@ void SpriteRenderer:: DrawSprite(Texture2D& texture,
     model = glm::translate(model, glm::vec3(position, 0.0f));
 
     model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
-    model = glm::rotate(model, rotate, glm::vec3(0.0f, 0.0f, 1.0f));
+    model = glm::rotate(model, glm::radians(rotate), glm::vec3(0.0f, 0.0f, 1.0f));
     model = glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
 
     model = glm::scale(model, glm::vec3(size, 1.0f));

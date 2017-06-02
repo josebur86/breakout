@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#include "../third_party/SDL2/include/SDL.h"
-#include "../third_party/SDL2/include/SDL_opengl.h"
+#include <SDL.h>
+#include <SDL_opengl.h>
 
 #include "gl_init.h"
 #include "game.h"
@@ -54,10 +54,16 @@ int main(int argc, char **argv)
         return 1;
     }
     
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GLContext GLContext = SDL_GL_CreateContext(Window);
 
     assert(InitGL());
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     Breakout.Init();
 
     r32 Delta = 0;

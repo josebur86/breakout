@@ -89,7 +89,7 @@ static gl_function_table LoadFunctionTable(char *FileName)
     }
     else
     {
-        printf("Unable to load the function table.\n");
+        printf("generate_gl_init: Unable to load the function table.\n");
     }
 
     return Table;
@@ -136,9 +136,9 @@ static void WriteInitGL(FILE *File, gl_function_table *FunctionTable)
 
 int main(int argc, char **argv)
 {
-    gl_function_table FunctionTable = LoadFunctionTable("code\\gl.functions");
+    gl_function_table FunctionTable = LoadFunctionTable("code/gl.functions");
 
-    FILE *File = fopen("code\\gl_init.h", "w");
+    FILE *File = fopen("code/gl_init.h", "w");
     if (File)
     {
         fputs("#pragma once\n\n", File);
