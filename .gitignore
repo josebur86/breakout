@@ -5,6 +5,8 @@ tags
 *.dll
 *.ilk
 *.obj
+*.sln
+.vs/
 
 gl_init.h
 build/
